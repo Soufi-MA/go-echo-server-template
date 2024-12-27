@@ -1,0 +1,45 @@
+{{ define "navbar"}}
+
+<nav
+  class="w-full h-12 flex justify-between items-center px-4 py-2 bg-gray-200 text-gray-700"
+>
+  <p
+    class="font-bold cursor-pointer hover:text-gray-600"
+    hx-get="/"
+    hx-target="body"
+    hx-swap="InnerHTML"
+  >
+    Home
+  </p>
+
+  <ul class="flex items-center gap-4">
+    <li
+      class="cursor-pointer hover:text-gray-600"
+      hx-get="/users"
+      hx-target="#body"
+      hx-swap="InnerHTML"
+    >
+      All Users
+    </li>
+    <li
+      class="cursor-pointer hover:text-gray-600"
+      hx-get="/add-user"
+      hx-target="#body"
+      hx-swap="InnerHTML"
+    >
+      Add User
+    </li>
+    <li>
+      <form hx-get="/users/search" hx-target="#body" hx-swap="InnerHTML">
+        <input
+          class="border px-4 py-2 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text"
+          name="name"
+          placeholder="Search User"
+        />
+      </form>
+    </li>
+  </ul>
+</nav>
+
+{{ end }}

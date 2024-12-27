@@ -1,0 +1,60 @@
+# Binary files and executables
+/bin/
+/go-server
+/tmp/
+
+# Dependency directories and caches
+/pkg/
+/go.sum
+
+# Compiled output files
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE and Editor settings
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Node.js dependencies (if used for Tailwind CSS or other tools)
+node_modules/
+*.lock
+
+# Tailwind CSS output
+public/assets/css/
+public/assets/js/
+
+# Test coverage reports
+coverage.out
+*.coverprofile
+
+# Build artifacts
+dist/
+build/
+cache/
+
+# Debugger and profiler artifacts
+*.prof
+*.test
+trace.out
+pprof/
+
+# Air live reload tool
+.air
+.air.toml

@@ -1,0 +1,107 @@
+{{ define "all-users" }} {{if .users}}
+<div class="container mx-auto mt-10 p-4 bg-gray-100 shadow-md rounded-lg">
+  <h1 class="text-2xl font-bold text-center mb-4">Users</h1>
+
+  <table class="table-auto w-full">
+    <thead>
+      <tr class="bg-blue-400">
+        <th
+          class="px-6 py-3 border border-gray-200 text-left font-medium uppercase tracking-wider"
+        >
+          Name
+        </th>
+        <th
+          class="px-6 py-3 border border-gray-200 text-left font-medium uppercase tracking-wider"
+        >
+          Age
+        </th>
+        <th
+          class="px-6 py-3 border border-gray-200 text-left font-medium uppercase tracking-wider"
+        >
+          Salary
+        </th>
+        <th
+          class="px-6 py-3 border border-gray-200 text-left font-medium uppercase tracking-wider"
+        >
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{ range .users }} {{ template "user" .}} {{ end }}
+    </tbody>
+  </table>
+</div>
+
+{{else}}
+<div class="container mx-auto mt-10 p-4 bg-gray-100 shadow-md rounded-lg">
+  <h1 class="text-2xl font-bold text-center mb-4">Users</h1>
+  <div class="text-center">Nothin found</div>
+</div>
+{{end}} {{ end }} {{ define "user" }} {{if .Name}}
+<tr class="bg-white" id="user{{.ID}}">
+  <td class="px-6 py-4 border border-gray-200">{{ .Name }}</td>
+  <td class="px-6 py-4 border border-gray-200">{{ .Age }}</td>
+  <td class="px-6 py-4 border border-gray-200">{{ .Salary }}</td>
+  <td class="px-6 py-4 border border-gray-200 flex space-x-2">
+    <button
+      type="button"
+      class="inline-flex items-center px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    >
+      Update
+    </button>
+    <button
+      hx-delete="/users/{{.ID}}"
+      hx-target="#user{{.ID}}"
+      hx-swap="InnerHTML"
+      type="button"
+      class="inline-flex items-center px-2 py-1 bg-red-500 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+    >
+      Delete
+    </button>
+  </td>
+</tr>
+{{end}} {{ end }} {{ define "add-user"}}
+<div class="container mx-auto mt-10 p-4 bg-gray-100 shadow-md rounded-lg">
+  <h1 class="text-2xl font-bold text-center mb-4">User Input Form</h1>
+  <form hx-post="/users" hx-target="#result" hx-swap="InnerHTML">
+    <div class="mb-4">
+      <label for="name" class="block text-sm font-medium text-gray-700"
+        >Name:</label
+      >
+      <input
+        type="text"
+        name="name"
+        class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="age" class="block text-sm font-medium text-gray-700"
+        >Age:</label
+      >
+      <input
+        type="number"
+        name="age"
+        class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="salary" class="block text-sm font-medium text-gray-700"
+        >Salary:</label
+      >
+      <input
+        type="number"
+        name="salary"
+        class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
+    </div>
+    <button
+      type="submit"
+      class="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    >
+      Submit
+    </button>
+  </form>
+  <p id="result"></p>
+</div>
+{{end}}
